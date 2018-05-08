@@ -1,8 +1,18 @@
+/* Sets styles for everything inside the html tags, which is everything */
 html{
-  font-family: 'Fascinate Inline', cursive;
+  font-size: 20;
+  font-family: 'Skranji', cursive;
 }
 
+/* Sets styles for everything inside an h1 tag */
 h1{
+  font-family: 'Fascinate Inline', cursive;
   color: red;
+}
+
+/* Sets styles for everything in the specialSection class */
+/* Class designations are marked by a . at the begining */
+.specialSection{
+  color: green;
 }
 
