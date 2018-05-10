@@ -8,20 +8,24 @@
     <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
 <!--     Links the css file to this page.  Notice the href section contains the file path to the css file. -->
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="main.js"></script>
 <!--     Sets a title that is displayed on the tab. -->
     <title>My Website!</title>
   </head>
   
   <body>
     <h1>
-      This is the second page.
-      <p>
-        
-<!--         This is a link but instead of text, an image is used -->
-        <a href="../index.html">
-          <img src="https://img.buzzfeed.com/buzzfeed-static/static/2014-06/6/12/enhanced/webdr08/original-21313-1402070821-13.jpg?downsize=715:*&output-format=auto&output-quality=auto" width="128"/>
-        </a>
-      </p>
+      Submit a Cat Picture
     </h1>
+    <p>
+      Picture Name:<br>
+      <input type="text" id="name"><br>
+      Link:<br>
+      <input type="text" id="link"><br>
+      <button onclick="addPicButton()">Add Picture</button>
+    </p>
+    <p id="catPics"></p>
+    
   </body>
 </html>
