@@ -3,12 +3,6 @@ firebaseInit();
 function onSubmit(){
   let title = document.getElementById("pictureTitle").value;
   let link = document.getElementById("pictureLink").value;
-  
-  let img = document.createElement("img");
-  img.src = link;
-  img.width = 300;
-  
-  document.getElementById("pics").appendChild(img);
   addToFirebase(title, link);
 }
 
@@ -17,6 +11,21 @@ function addToFirebase(title, link){
     PictureTitle: title,
     PictureLink: link
   });
+}
+
+function getFromFirebase(){
+  let list = firebase.database().ref('catPics/');
+  list.on('child_added', function(snapshot) {
+    addPic(snapshot.val().PictureLink);
+  });
+}
+
+function addPic(link){
+  let img = document.createElement("img");
+  img.src = link;
+  img.width = 300;
+  
+  document.getElementById("pics").appendChild(img);
 }
 
 function firebaseInit(){
@@ -31,4 +40,5 @@ function firebaseInit(){
   };
   firebase.initializeApp(config);
   console.log("Firebase in connected");
+  getFromFirebase();
 }
