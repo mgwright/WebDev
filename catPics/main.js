@@ -9,6 +9,14 @@ function onSubmit(){
   img.width = 300;
   
   document.getElementById("pics").appendChild(img);
+  addToFirebase(title, link);
+}
+
+function addToFirebase(title, link){
+  firebase.database().ref('catPics/').push({
+    PictureTitle: title,
+    PictureLink: link
+  });
 }
 
 function firebaseInit(){
