@@ -1,35 +1,40 @@
-init();
-
-function addPicButton() {
-  let name = document.getElementById("name").value;
-  let link = document.getElementById("link").value;
-  addToFirebase(name, link);
-  document.getElementById("name").value = "";
-  document.getElementById("link").value = "";
+firebaseInit();
+	
+function onSubmit() {
+  let title = document.getElementById("pictureTitle").value;
+  let link = document.getElementById("pictureLink").value;
+  
+  addToFirebase(title, link);
 }
 
 function addToFirebase(title, link) {
   firebase.database().ref('catPics/').push({
-    title: title,
-    link: link
+    PictureTitle: title,
+    PictureLink: link
   });
 }
 
-function addPic(link) {
+function addPic(snapshot) {
   let img = document.createElement("img");
-  img.src = link;
+  img.src = snapshot.val().PictureLink;
   img.width = "300";
-  document.getElementById("catPics").appendChild(img);
+  
+  let a = document.createElement("a");
+  a.href = "../catComments/main.html?id=" + snapshot.key;
+  a.appendChild(img);
+  
+  document.getElementById("pics").appendChild(a);
 }
 
 function getFromFirebase() {
   let list = firebase.database().ref('catPics/')
   list.on('child_added', function(snapshot) {
-    addPic(snapshot.val().link);
+    addPic(snapshot);
   });
 }
 
-function init() {
+function firebaseInit() {
+  // Initialize Firebase
   var config = {
     apiKey: "AIzaSyCcXmE1XLx-UMwGljEPzh8CAW9BuzY2IJA",
     authDomain: "example-c60ad.firebaseapp.com",
@@ -39,5 +44,6 @@ function init() {
     messagingSenderId: "997909509554"
   };
   firebase.initializeApp(config);
-  getFromFirebase()
+  console.log("Firebase is connected");
+  getFromFirebase();
 }
