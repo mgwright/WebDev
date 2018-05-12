@@ -28,4 +28,10 @@ function firebaseInit() {
   };
   firebase.initializeApp(config);
   console.log("Firebase is connected");
+  
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+      window.location.href = "../profile/login.html";
+    } 
+  });
 }

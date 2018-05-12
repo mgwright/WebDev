@@ -48,6 +48,25 @@ function onAddComment(){
   document.getElementById("comment").value = "";
 }
 
+function addCommentBox(){
+//   <input type="text" id="comment"/><br>
+//   <button onclick="onAddComment()">
+//     Add Comment
+//   </button>
+  
+  let input = document.createElement("input");
+  input.type = "text";
+  input.id = "comment";
+  
+  let button = document.createElement("button");
+  button.onclick = "onAddComment()";
+  button.innerHTML = "Add Comment";
+  
+  let commentBox = document.getElementById("commentBox");
+  commentBox.appendChild(input);
+  commentBox.appendChild(button);
+}
+
 function firebaseInit() {
   // Initialize Firebase
   var config = {
@@ -62,4 +81,10 @@ function firebaseInit() {
   console.log("Firebase is connected");
   getPic();
   getComments();
+  
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      addCommentBox();
+    } 
+  });
 }
