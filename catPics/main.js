@@ -16,16 +16,20 @@ function addToFirebase(title, link){
 function getFromFirebase(){
   let list = firebase.database().ref('catPics/');
   list.on('child_added', function(snapshot) {
-    addPic(snapshot.val().PictureLink);
+    addPic(snapshot);
   });
 }
 
-function addPic(link){
+function addPic(snapshot){
   let img = document.createElement("img");
-  img.src = link;
+  img.src = snapshot.val().PictureLink;
   img.width = 300;
   
-  document.getElementById("pics").appendChild(img);
+  let a = document.createElement("a");
+  a.href = "../catComments/main.html?id=" + snapshot.key;
+  a.appendChild(img);
+  
+  document.getElementById("pics").appendChild(a);
 }
 
 function firebaseInit(){
