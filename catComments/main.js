@@ -18,6 +18,26 @@ function addPicToPage(link){
   document.getElementById("pic").appendChild(img);
 }
 
+function onAddComment(){
+  let id = getId();
+  let comment = document.getElementById("newComment").value;
+  
+  firebase.database().ref('comments/' + id).push({
+    comment: comment
+  });
+  document.getElementById("newComment").value = "";
+}
+
+function getComments(){
+  let id = getId();
+  let comments = firebase.database().ref('comments/' + id)
+  comments.on('child_added', function(snapshot){
+    let c = document.createElement("li");
+    c.innerHTML = snapshot.val().comment;
+    document.getElementById("comments").appendChild(c);
+  })
+}
+
 function addTitleToPage(title){
   document.getElementById("title").innerHTML = title;
 }
@@ -42,4 +62,5 @@ function firebaseInit(){
   firebase.initializeApp(config);
   console.log("Firebase in connected");
   getPic();
+  getComments();
 }
