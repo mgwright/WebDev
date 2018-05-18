@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- Fetches font from google -->
+    <link href="https://fonts.googleapis.com/css?family=Fascinate+Inline" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+    <!-- Links the css file to this page. Notice the href section contains the file path to the css file. -->
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script src="login.js"></script>
+    <!-- Sets a title that is displayed on the tab. -->
+    <title>My Website!</title>
+  </head>
+
+  <!--   The body contains all of the actual code. -->
+
+  <body>
+    
+    <div class="login">
+      <h1>
+        Login:
+      </h1>
+      <p id="L">
+        Email:<br>
+        <input type="text" id="emailL"><br>
+        Password:<br>
+        <input type="password" id="passwordL"><br>
+        <button onclick="login()">
+          Login
+        </button>
+      </p>
+    </div>
+    
+    <div class="createAccount">
+      <h1 >
+        Create Account:
+      </h1>
+      <p id="CA">
+        Email:<br>
+        <input type="text" id="emailCA"><br>
+        Password:<br>
+        <input type="password" id="passwordCA"><br>
+        <button onclick="createAccount()">
+          Create Account
+        </button>
+      </p>
+    </div>
+    
+    
+  </body>
+
+</html>
